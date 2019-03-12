@@ -1,16 +1,28 @@
 const Router = require('koa-router')
 const jwt = require('jsonwebtoken')
 const md5 = require('md5')
-const Models = require('../models/index');
+const Models = require('../models/index')
+const { getSong } = require('../utils/tools')
 
 const secret = 'cai'
 
 const router = new Router()
 
-router.get('/test', async (ctx, next) => {
-  ctx.body = {
-    code: 1,
-    msg: 'ok'
+router.get('/getSong', async (ctx, next) => {
+  let musicLists = await Models.Musics.findAndCountAll()
+  for (let i = 0; i < musicLists.rows.length; i++) {
+    musicLists.rows[i].lyrics = getSong(musicLists.rows[i].lyrics)
+  }
+  if (!musicLists) {
+    ctx.body = {
+      code: 1,
+      data: '查询失败'
+    }
+  } else {
+    ctx.body = {
+      code: 0,
+      data: musicLists
+    }
   }
 })
 

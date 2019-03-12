@@ -137,16 +137,17 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
+        :page-sizes="[10, 20, 50]"
+        :page-size="10"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
+        :total="total">
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+import {getSongAPi} from '../../api/music'
 export default {
   data () {
     return {
@@ -171,33 +172,8 @@ export default {
       currentPage: 1,
       song: '',
       multipleSelection: [],
-      tableData: [
-        {
-          'music_id': 1,
-          'song': '最佳损友',
-          'singer': '任素汐',
-          'album': '最佳损友 国语版',
-          'language': '国语',
-          'recordCompany': '北京听见时代娱乐传媒有限公司',
-          'publish_time': '2019-03-01',
-          'hot': 99,
-          'genre': 'Pop 流行',
-          'image': '//y.gtimg.cn/music/photo_new/T002R300x300M0000015rUVB2OUdGA.jpg?max_age=2592000',
-          'url': 'http://113.113.69.164/amobile.music.tc.qq.com/C400004WTcut1gjTcW.m4a?guid=4451169631&vkey=EA8D19B49FD3268AA3BD25B6B2B19B4531008707CF23626916EA53E84AB9312179B31F4C06F1310D120170C679081BFF93CB70732029F654&uin=0&fromtag=66',
-          'lyrics': [
-            '最佳损友 (国语版) (《绿皮书》电影中国区推广曲) - 任素汐',
-            '词：樊冲',
-            '原词：黄伟文',
-            '原曲：Eric Kwok',
-            'OP：Wyman',
-            'SP：环球音乐出版有限公司',
-            'OP：Warner/Chappell Music, H.K. Ltd.',
-            'SP：Warner/Chappell Music Publishing Agency (Beijing) Ltd.',
-            '制作人：陈雪燃/林乔',
-            '...'
-          ]
-        }
-      ]
+      tableData: [],
+      total: 0
     }
   },
   methods: {
@@ -214,7 +190,16 @@ export default {
     handleClick (row) {
       console.log(row)
       this.dialogFormVisible = true
+    },
+    getSongLists() {
+      getSongAPi().then(res => {
+        this.tableData = res.data.rows
+        this.total = res.data.count
+      })
     }
+  },
+  mounted() {
+    this.getSongLists()
   }
 }
 </script>
