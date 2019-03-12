@@ -2,7 +2,7 @@
   <div class="tagsView">
     <div class="box">
       <div v-for="(item, index) in $store.state.TagsViews" :key="index">
-        <span @click="goto(item.path)">
+        <span @click="goto(item.path)" :style="item.title === $store.state.breadcrumbList[$store.state.breadcrumbList.length-1]?`background:${$store.state.theme}`:''" :class="item.title === $store.state.breadcrumbList[$store.state.breadcrumbList.length-1]?'active':''">
           {{item.title}}
           <i class="el-icon-close" @click.stop="delPath(index)"></i>
         </span>
@@ -68,6 +68,7 @@ export default {
           }
         }
         span{
+          cursor: pointer;
           margin-right: 5px;
           border: 1px solid rgb(230,230,230);
           border-radius: 3px;
@@ -79,13 +80,15 @@ export default {
           &.active{
             background: #42b983;
             color: #fff;
+            i{
+              color: #fff;
+            }
           }
           i{
             color: #333;
             height: 16px;
             line-height: 16px;
             width: 16px;
-            cursor: pointer;
             border-radius: 50%;
             &:hover{
               color: #fff;

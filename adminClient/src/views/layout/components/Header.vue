@@ -6,8 +6,8 @@
     <div class="user">
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          cai
-          <img src="../../../static/img/avater.jpg" alt="">
+          {{userInfo.username}}
+          <img :src="userInfo.avator" alt="">
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="/login">退出登陆</el-dropdown-item>
@@ -28,12 +28,16 @@ export default {
   },
   data () {
     return {
-      userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : ''
+      userInfo: sessionStorage.getItem('userInfo') ? JSON.parse(sessionStorage.getItem('userInfo')) : ''
     }
   },
   methods: {
     handleCommand (command) {
-      this.$router.push(command)
+      if (command === '/login') {
+        this.$router.replace('/login')
+      } else {
+        this.$router.push(command)
+      }
     }
   }
 }

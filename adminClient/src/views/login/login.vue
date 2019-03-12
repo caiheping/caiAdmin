@@ -77,22 +77,20 @@ export default {
     async submitForm (formName) {
       let _this = this
       this.$refs[formName].validate(valid => {
-        console.log(valid)
         if (valid) {
           loginApi(this.loginForm).then(res => {
             if (res.code === 0) {
-              localStorage.setItem('token', res.token)
               let userInfo = {
                 username: res.data.username,
                 userId: res.data.id,
                 avator: res.data.avator
               }
-              localStorage.setItem('userInfo', JSON.stringify(userInfo))
+              sessionStorage.setItem('token', res.token)
+              sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
               _this.$router.push('/layout/home')
             }
           })
         } else {
-          console.log('error submit!!')
           return false
         }
       })

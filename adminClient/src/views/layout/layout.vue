@@ -21,19 +21,19 @@
                   <span slot="title">音乐列表</span>
                 </el-menu-item>
               </el-submenu>
-              <el-submenu index="foodManagement">
+              <el-submenu index="movieManagement">
                 <template slot="title">
-                  <i class="fa fa-cutlery" aria-hidden="true"></i>
-                  <span slot="title">美食模块</span>
+                  <i class="fa fa-film" aria-hidden="true"></i>
+                  <span slot="title">影视模块</span>
                 </template>
-                <el-menu-item index="foodLists">
-                  <span slot="title">美食列表</span>
+                <el-menu-item index="TV">
+                  <span slot="title">电视剧</span>
                 </el-menu-item>
-                <el-menu-item index="foodCategorys">
-                  <span slot="title">美食类目</span>
+                <el-menu-item index="film">
+                  <span slot="title">电影</span>
                 </el-menu-item>
-                <el-menu-item index="foodTags">
-                  <span slot="title">美食标签</span>
+                <el-menu-item index="anime">
+                  <span slot="title">动漫</span>
                 </el-menu-item>
               </el-submenu>
               <el-submenu index="userManagement">
@@ -95,7 +95,7 @@ export default {
   data () {
     return {
       isCollapse: false,
-      title: '美食管理系统'
+      title: '小菜管理系统'
     }
   },
   components: {

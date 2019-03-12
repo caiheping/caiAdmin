@@ -16,7 +16,7 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [{
       username: 'admin',
       password: md5('123456'),
-      avator: '/static/img/avater.jpg',
+      avator: 'http://localhost:8888/static/img/avater.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

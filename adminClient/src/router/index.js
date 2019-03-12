@@ -16,16 +16,11 @@ export default new Router({
       }
     },
     {
-      path: '/test',
-      component: () => import('../views/test.vue')
-    },
-    {
       path: '/',
-      redirect: 'login'
+      redirect: '/login'
     },
     {
       path: '/layout',
-      name: 'layout',
       component: () => import('../views/layout/layout.vue'),
       children: [
         {
@@ -54,32 +49,32 @@ export default new Router({
             breadcrumbList: ['音乐模块', '音乐列表']
           }
         },
-        // 美食
+        // 影视
         {
-          path: 'foodLists',
+          path: 'film',
           name: 'foodLists',
-          component: () => import('../views/foodManagement/foodLists.vue'),
+          component: () => import('../views/movieManagement/film.vue'),
           meta: {
-            title: '美食模块',
-            breadcrumbList: ['美食模块', '美食列表']
+            title: '电影列表',
+            breadcrumbList: ['影视模块', '电影列表']
           }
         },
         {
-          path: 'foodCategorys',
-          name: 'foodCategorys',
-          component: () => import('../views/foodManagement/foodCategorys.vue'),
+          path: 'TV',
+          name: 'TV',
+          component: () => import('../views/movieManagement/TV.vue'),
           meta: {
-            title: '美食类目',
-            breadcrumbList: ['美食模块', '美食类目']
+            title: '电视剧列表',
+            breadcrumbList: ['影视模块', '电视剧列表']
           }
         },
         {
-          path: 'foodTags',
-          name: 'foodTags',
-          component: () => import('../views/foodManagement/foodTags.vue'),
+          path: 'anime',
+          name: 'anime',
+          component: () => import('../views/movieManagement/anime.vue'),
           meta: {
-            title: '美食标签',
-            breadcrumbList: ['美食模块', '美食标签']
+            title: '动漫列表',
+            breadcrumbList: ['影视模块', '动漫列表']
           }
         },
         {
@@ -87,7 +82,7 @@ export default new Router({
           name: 'userLists',
           component: () => import('../views/userManagement/userLists.vue'),
           meta: {
-            title: '用户模块',
+            title: '用户列表',
             breadcrumbList: ['用户模块', '用户列表']
           }
         },
@@ -101,6 +96,18 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('../views/404.vue'),
+      meta: {
+        title: '404'
+      }
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
   ]
 })

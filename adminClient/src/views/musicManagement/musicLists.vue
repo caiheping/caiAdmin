@@ -53,7 +53,8 @@
         </el-input>
       </div>
       <div class="item">
-        <el-button  icon="el-icon-search" type="primary">查找</el-button>
+        <el-button  icon="el-icon-search">查找</el-button>
+        <el-button  icon="el-icon-plus" type="primary">添加</el-button>
       </div>
     </div>
     <div class="content">
@@ -167,7 +168,7 @@ export default {
         label: '北京烤鸭'
       }],
       value: '',
-      currentPage: 2,
+      currentPage: 1,
       song: '',
       multipleSelection: [],
       tableData: [
@@ -212,7 +213,7 @@ export default {
     },
     handleClick (row) {
       console.log(row)
-      this.dialogFormVisible = true;
+      this.dialogFormVisible = true
     }
   }
 }

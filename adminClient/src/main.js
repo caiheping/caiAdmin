@@ -18,11 +18,9 @@ Vue.use(VueParticles)
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
-  console.log(to)
-  console.log(from)
   store.state.breadcrumbList = to.meta.breadcrumbList
   store.state.activeMenu = to.name
-  if (to.meta.title !== '登陆') {
+  if (to.meta.title !== '登陆' && to.meta.title !== '404') {
     let len = store.state.TagsViews.filter(item => item.title === to.meta.title)
     if (len.length === 0) {
       store.state.TagsViews.push({
